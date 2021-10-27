@@ -1,0 +1,31 @@
+CREATE TABLE Endpo
+   (
+      idend int IDENTITY(1,1) PRIMARY KEY,
+      endpoin varchar(255),
+      apikey varchar(255)
+   )
+CREATE TABLE busquedas
+   (
+      idbusqueda int IDENTITY(1,1) PRIMARY KEY,
+      ciudad varchar(255)
+   )
+CREATE TABLE noticias
+   (
+      idnoticia int IDENTITY(1,1) PRIMARY KEY,
+      autor varchar(255),
+      titulo varchar(500),
+      urlnoticia varchar(500),
+      idciudad int NOT NULL,
+      FOREIGN KEY (idciudad) REFERENCES busquedas(idbusqueda)
+    )
+CREATE TABLE climas
+   (
+      idclima int IDENTITY(1,1) PRIMARY KEY,
+      ciudad varchar(20),
+      temp varchar(20),
+      temp_max varchar(20),
+      temp_min varchar(20),
+      humedad varchar(20),
+      idciudad int NOT NULL,
+      FOREIGN KEY (idciudad) REFERENCES busquedas(idbusqueda)
+   )
