@@ -13,10 +13,10 @@ using System.Web.Http.Cors;
 
 namespace Clima_Noticias.Controllers
 {
-    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class busquedasController : ApiController
     {
-        private noticias_climaEntities2 db = new noticias_climaEntities2();
+        private climaEntities db = new climaEntities();
 
         // GET: api/busquedas
         public IQueryable<busquedas> Getbusquedas()

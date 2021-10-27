@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="39cb043a548f4fb8b64206a30c5a4c27" Name="Diagram1">
-        <EntityTypeShape EntityType="noticias_climaModel.busquedas" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="noticias_climaModel.Endpo" Width="1.5" PointX="3.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="noticias_climaModel.noticias" Width="1.5" PointX="2.75" PointY="3.125" />
-        <AssociationConnector Association="noticias_climaModel.FK__noticias__idciud__30F848ED" />
-        <EntityTypeShape EntityType="noticias_climaModel.climas" Width="1.5" PointX="3" PointY="6.625" />
-        <AssociationConnector Association="noticias_climaModel.FK__climas__idciudad__33D4B598" />
+      <Diagram DiagramId="a5119dae7dd345589004556ff8094a83" Name="Diagram1">
+        <EntityTypeShape EntityType="climaModel.busquedas" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="climaModel.climas" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="climaModel.Endpo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="climaModel.noticias" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="climaModel.FK__climas__idciudad__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="climaModel.FK__noticias__idciud__3A81B327" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

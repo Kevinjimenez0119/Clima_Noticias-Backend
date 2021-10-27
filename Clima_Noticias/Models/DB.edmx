@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="noticias_climaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="climaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="busquedas">
           <Key>
             <PropertyRef Name="idbusqueda" />
           </Key>
           <Property Name="idbusqueda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ciudad" Type="varchar" MaxLength="255" />
-          <Property Name="fecha" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="climas">
           <Key>
@@ -43,7 +43,7 @@
           <Property Name="urlnoticia" Type="varchar" MaxLength="500" />
           <Property Name="idciudad" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__climas__idciudad__33D4B598">
+        <Association Name="FK__climas__idciudad__3D5E1FD2">
           <End Role="busquedas" Type="Self.busquedas" Multiplicity="1" />
           <End Role="climas" Type="Self.climas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -55,7 +55,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__noticias__idciud__30F848ED">
+        <Association Name="FK__noticias__idciud__3A81B327">
           <End Role="busquedas" Type="Self.busquedas" Multiplicity="1" />
           <End Role="noticias" Type="Self.noticias" Multiplicity="*" />
           <ReferentialConstraint>
@@ -67,79 +67,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="noticias_climaModelStoreContainer">
+        <EntityContainer Name="climaModelStoreContainer">
           <EntitySet Name="busquedas" EntityType="Self.busquedas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="climas" EntityType="Self.climas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Endpo" EntityType="Self.Endpo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="noticias" EntityType="Self.noticias" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__climas__idciudad__33D4B598" Association="Self.FK__climas__idciudad__33D4B598">
+          <AssociationSet Name="FK__climas__idciudad__3D5E1FD2" Association="Self.FK__climas__idciudad__3D5E1FD2">
             <End Role="busquedas" EntitySet="busquedas" />
             <End Role="climas" EntitySet="climas" />
           </AssociationSet>
-          <AssociationSet Name="FK__noticias__idciud__30F848ED" Association="Self.FK__noticias__idciud__30F848ED">
+          <AssociationSet Name="FK__noticias__idciud__3A81B327" Association="Self.FK__noticias__idciud__3A81B327">
             <End Role="busquedas" EntitySet="busquedas" />
             <End Role="noticias" EntitySet="noticias" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="noticias_climaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="climaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="busquedas">
           <Key>
             <PropertyRef Name="idbusqueda" />
           </Key>
           <Property Name="idbusqueda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ciudad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="noticias" Relationship="noticias_climaModel.FK__noticias__idciud__30F848ED" FromRole="busquedas" ToRole="noticias" />
-          <NavigationProperty Name="climas" Relationship="noticias_climaModel.FK__climas__idciudad__33D4B598" FromRole="busquedas" ToRole="climas" />
+          <Property Name="fecha" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="climas" Relationship="Self.FK__climas__idciudad__3D5E1FD2" FromRole="busquedas" ToRole="climas" />
+          <NavigationProperty Name="noticias" Relationship="Self.FK__noticias__idciud__3A81B327" FromRole="busquedas" ToRole="noticias" />
         </EntityType>
-        <EntityType Name="Endpo">
-          <Key>
-            <PropertyRef Name="idend" />
-          </Key>
-          <Property Name="idend" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="endpoin" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="apikey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityContainer Name="noticias_climaEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="busquedas" EntityType="Self.busquedas" />
-          <EntitySet Name="Endpo" EntityType="Self.Endpo" />
-          <EntitySet Name="noticias" EntityType="noticias_climaModel.noticias" />
-          <AssociationSet Name="FK__noticias__idciud__30F848ED" Association="noticias_climaModel.FK__noticias__idciud__30F848ED">
-            <End Role="busquedas" EntitySet="busquedas" />
-            <End Role="noticias" EntitySet="noticias" />
-          </AssociationSet>
-          <EntitySet Name="climas" EntityType="noticias_climaModel.climas" />
-          <AssociationSet Name="FK__climas__idciudad__33D4B598" Association="noticias_climaModel.FK__climas__idciudad__33D4B598">
-            <End Role="busquedas" EntitySet="busquedas" />
-            <End Role="climas" EntitySet="climas" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="noticias">
-          <Key>
-            <PropertyRef Name="idnoticia" />
-          </Key>
-          <Property Name="idnoticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="autor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="titulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="urlnoticia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="idciudad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="busquedas" Relationship="noticias_climaModel.FK__noticias__idciud__30F848ED" FromRole="noticias" ToRole="busquedas" />
-        </EntityType>
-        <Association Name="FK__noticias__idciud__30F848ED">
-          <End Type="noticias_climaModel.busquedas" Role="busquedas" Multiplicity="1" />
-          <End Type="noticias_climaModel.noticias" Role="noticias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="busquedas">
-              <PropertyRef Name="idbusqueda" />
-            </Principal>
-            <Dependent Role="noticias">
-              <PropertyRef Name="idciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="climas">
           <Key>
             <PropertyRef Name="idclima" />
@@ -151,11 +107,30 @@
           <Property Name="temp_min" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="humedad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="idciudad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="busquedas" Relationship="noticias_climaModel.FK__climas__idciudad__33D4B598" FromRole="climas" ToRole="busquedas" />
+          <NavigationProperty Name="busquedas" Relationship="Self.FK__climas__idciudad__3D5E1FD2" FromRole="climas" ToRole="busquedas" />
         </EntityType>
-        <Association Name="FK__climas__idciudad__33D4B598">
-          <End Type="noticias_climaModel.busquedas" Role="busquedas" Multiplicity="1" />
-          <End Type="noticias_climaModel.climas" Role="climas" Multiplicity="*" />
+        <EntityType Name="Endpo">
+          <Key>
+            <PropertyRef Name="idend" />
+          </Key>
+          <Property Name="idend" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="endpoin" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="apikey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="noticias">
+          <Key>
+            <PropertyRef Name="idnoticia" />
+          </Key>
+          <Property Name="idnoticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="autor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="titulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="urlnoticia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="idciudad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="busquedas" Relationship="Self.FK__noticias__idciud__3A81B327" FromRole="noticias" ToRole="busquedas" />
+        </EntityType>
+        <Association Name="FK__climas__idciudad__3D5E1FD2">
+          <End Role="busquedas" Type="Self.busquedas" Multiplicity="1" />
+          <End Role="climas" Type="Self.climas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="busquedas">
               <PropertyRef Name="idbusqueda" />
@@ -165,23 +140,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__noticias__idciud__3A81B327">
+          <End Role="busquedas" Type="Self.busquedas" Multiplicity="1" />
+          <End Role="noticias" Type="Self.noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="busquedas">
+              <PropertyRef Name="idbusqueda" />
+            </Principal>
+            <Dependent Role="noticias">
+              <PropertyRef Name="idciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="climaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="busquedas" EntityType="Self.busquedas" />
+          <EntitySet Name="climas" EntityType="Self.climas" />
+          <EntitySet Name="Endpo" EntityType="Self.Endpo" />
+          <EntitySet Name="noticias" EntityType="Self.noticias" />
+          <AssociationSet Name="FK__climas__idciudad__3D5E1FD2" Association="Self.FK__climas__idciudad__3D5E1FD2">
+            <End Role="busquedas" EntitySet="busquedas" />
+            <End Role="climas" EntitySet="climas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__noticias__idciud__3A81B327" Association="Self.FK__noticias__idciud__3A81B327">
+            <End Role="busquedas" EntitySet="busquedas" />
+            <End Role="noticias" EntitySet="noticias" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="noticias_climaModelStoreContainer" CdmEntityContainer="noticias_climaEntities2">
+        <EntityContainerMapping StorageEntityContainer="climaModelStoreContainer" CdmEntityContainer="climaEntities">
           <EntitySetMapping Name="busquedas">
-            <EntityTypeMapping TypeName="noticias_climaModel.busquedas">
+            <EntityTypeMapping TypeName="climaModel.busquedas">
               <MappingFragment StoreEntitySet="busquedas">
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idbusqueda" ColumnName="idbusqueda" />
                 <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="climas">
+            <EntityTypeMapping TypeName="climaModel.climas">
+              <MappingFragment StoreEntitySet="climas">
+                <ScalarProperty Name="idclima" ColumnName="idclima" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="temp" ColumnName="temp" />
+                <ScalarProperty Name="temp_max" ColumnName="temp_max" />
+                <ScalarProperty Name="temp_min" ColumnName="temp_min" />
+                <ScalarProperty Name="humedad" ColumnName="humedad" />
+                <ScalarProperty Name="idciudad" ColumnName="idciudad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Endpo">
-            <EntityTypeMapping TypeName="noticias_climaModel.Endpo">
+            <EntityTypeMapping TypeName="climaModel.Endpo">
               <MappingFragment StoreEntitySet="Endpo">
                 <ScalarProperty Name="idend" ColumnName="idend" />
                 <ScalarProperty Name="endpoin" ColumnName="endpoin" />
@@ -190,26 +204,13 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="noticias">
-            <EntityTypeMapping TypeName="noticias_climaModel.noticias">
+            <EntityTypeMapping TypeName="climaModel.noticias">
               <MappingFragment StoreEntitySet="noticias">
-                <ScalarProperty Name="idciudad" ColumnName="idciudad" />
-                <ScalarProperty Name="urlnoticia" ColumnName="urlnoticia" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="autor" ColumnName="autor" />
                 <ScalarProperty Name="idnoticia" ColumnName="idnoticia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="climas">
-            <EntityTypeMapping TypeName="noticias_climaModel.climas">
-              <MappingFragment StoreEntitySet="climas">
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="urlnoticia" ColumnName="urlnoticia" />
                 <ScalarProperty Name="idciudad" ColumnName="idciudad" />
-                <ScalarProperty Name="humedad" ColumnName="humedad" />
-                <ScalarProperty Name="temp_min" ColumnName="temp_min" />
-                <ScalarProperty Name="temp_max" ColumnName="temp_max" />
-                <ScalarProperty Name="temp" ColumnName="temp" />
-                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
-                <ScalarProperty Name="idclima" ColumnName="idclima" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

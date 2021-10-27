@@ -13,10 +13,10 @@ namespace Clima_Noticias.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class noticias_climaEntities2 : DbContext
+    public partial class climaEntities : DbContext
     {
-        public noticias_climaEntities2()
-            : base("name=noticias_climaEntities2")
+        public climaEntities()
+            : base("name=climaEntities")
         {
         }
     
@@ -26,8 +26,8 @@ namespace Clima_Noticias.Models
         }
     
         public virtual DbSet<busquedas> busquedas { get; set; }
+        public virtual DbSet<climas> climas { get; set; }
         public virtual DbSet<Endpo> Endpo { get; set; }
         public virtual DbSet<noticias> noticias { get; set; }
-        public virtual DbSet<climas> climas { get; set; }
     }
 }

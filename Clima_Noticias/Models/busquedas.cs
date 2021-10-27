@@ -17,8 +17,8 @@ namespace Clima_Noticias.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public busquedas()
         {
-            this.noticias = new HashSet<noticias>();
             this.climas = new HashSet<climas>();
+            this.noticias = new HashSet<noticias>();
         }
     
         public int idbusqueda { get; set; }
@@ -26,8 +26,8 @@ namespace Clima_Noticias.Models
         public string fecha { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<noticias> noticias { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<climas> climas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<noticias> noticias { get; set; }
     }
 }
