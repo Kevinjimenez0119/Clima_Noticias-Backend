@@ -1,5 +1,9 @@
 # Clima_Noticias
 
+## NoticiAPI
+
+La siguiente es una aplicación web desarrollada en el lenguaje de programación de C# bajo el paradigma de la programación orientada a objetos, cuyo principal objetivo es servir cómo api y proporcionar al cliente información relacionadas con noticias, climas y almacena en base de datos el clima y las noticias de cada busqueda dependiendo de una entrada suministrada por el usuario.
+
 ## Desplegar en AWS en windows server
 
 Paso 1: Crear una instancia en AWS con windows server.
